@@ -33,7 +33,7 @@ jobs:
        path: build/
 
     - name: Run Eslint
-      run: npm run lint
+      run: npx eslint .
 
     - name: Run npm audit
       run: npm audit --production
