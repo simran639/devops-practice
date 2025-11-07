@@ -6,7 +6,8 @@
   "scripts": {
     "lint": "eslint .",
     "format": "prettier --write .",
-    "test": "jest"
+    "test": "jest",
+    "build": "echo \"No build step required\""
   },
   "jest": {
     "testMatch": [
