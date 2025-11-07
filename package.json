@@ -2,9 +2,22 @@
   "name": "devops-practice",
   "version": "1.0.0",
   "description": "��#\u0000 \u0000D\u0000e\u0000v\u0000O\u0000p\u0000s\u0000 \u0000P\u0000r\u0000a\u0000c\u0000t\u0000i\u0000c\u0000e\u0000 \u0000R\u0000e\u0000p\u0000o\u0000\r\u0000 \u0000",
-  "main": "test.js",
+  "main": "__test__/sumtest.js",
   "scripts": {
-    "test": "echo \"No test\""
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "test": "jest"
+  },
+  "jest": {
+    "testMatch": [
+      "**/__test__/**/*.js?(x)",
+      "**/?(*.)+(spec|test).js?(x)"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/dist/",
+      "<rootDir>/test.js"
+    ]
   },
   "repository": {
     "type": "git",
@@ -17,5 +30,13 @@
     "url": "https://github.com/simran639/devops-practice/issues"
   },
   "homepage": "https://github.com/simran639/devops-practice#readme",
-  "devDependencies": { "jest": "^29.0.0" }
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "globals": "^16.5.0",
+    "jest": "^29.7.0",
+    "prettier": "^3.6.2"
+  }
 }

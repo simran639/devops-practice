@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
     - name: Checkout code
       uses: actions/checkout@v3
 
@@ -18,9 +19,23 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: '18'  # You can change this to match your project
+    
+    - name: Build project
+      run: npm run build
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+      name: build
+      path: build/
 
     - name: Install dependencies
       run: npm install
+
+    - name: Run Eslint
+      run: npm run lint
+
+    - name: Run npm audit
+      run: npm audit --production
 
     - name: Run tests
       run: npm test
@@ -28,4 +43,10 @@ jobs:
     - name: Run Semgrep scan
       uses: returntocorp/semgrep-action@v1
       with:
-        config: auto
+        config: .semgrep.yml
+    
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./build
