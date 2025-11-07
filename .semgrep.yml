@@ -2,6 +2,6 @@ rules:
   - id: detect-eval
     patterns:
       - pattern: eval(...)
-    message: Avoid using eval()
+    message: Avoid using eval() Avoid using eval() — dangerous security risk
     severity: ERROR
     languages: [javascript]
