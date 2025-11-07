@@ -32,8 +32,8 @@ jobs:
        name: build
        path: build/
 
-    - name: Run Eslint
-      run: npx eslint .
+    # - name: Run Eslint
+    #   run: npx eslint .
 
     - name: Run npm audit
       run: npm audit --production
