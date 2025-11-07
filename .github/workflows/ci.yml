@@ -32,11 +32,6 @@ jobs:
        name: build
        path: build/
 
-       permissions:
-        contents: write
-        pages: write
-        id-token: write
-
     # - name: Run Eslint
     #   run: npx eslint .
 
@@ -51,8 +46,8 @@ jobs:
       with:
         config: .semgrep.yml
     
-    # - name: Deploy to GitHub Pages
-    #   uses: peaceiris/actions-gh-pages@v3
-    #   with:
-    #     github_token: ${{ secrets.GITHUB_TOKEN }}
-    #     publish_dir: ./public
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./public
