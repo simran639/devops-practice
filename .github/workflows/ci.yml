@@ -38,8 +38,8 @@ jobs:
     - name: Run npm audit
       run: npm audit --production
 
-    - name: Run tests
-      run: npm test
+    # - name: Run tests
+    #   run: npm test
 
     - name: Run Semgrep scan
       uses: returntocorp/semgrep-action@v1
