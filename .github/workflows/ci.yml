@@ -20,6 +20,9 @@ jobs:
       with:
         node-version: '18'  # You can change this to match your project
     
+    - name: Install dependencies
+      run: npm install
+
     - name: Build project
       run: npm run build
 
@@ -28,9 +31,6 @@ jobs:
       with:
        name: build
        path: build/
-
-    - name: Install dependencies
-      run: npm install
 
     - name: Run Eslint
       run: npm run lint
