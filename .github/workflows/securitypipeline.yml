@@ -61,6 +61,10 @@ jobs:
       #     name: zap-report
       #     path: ./results
 
+      - name: List repo contents
+        run: ls -R ./results
+
+
       - name: Create Jira Issues
         run: |
           python scripts/create_jira_tickets.py ./results/semgrep-results.json 
