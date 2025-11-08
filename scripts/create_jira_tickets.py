@@ -16,7 +16,7 @@ def create_jira_issue(summary, description):
             "summary": summary,
             "description": description,
             "issuetype": {"name": "Bug"},
-            "priority": "Medium"
+            "priority": {"id": "3", "name": "Medium"}  # Medium priority
         }
     }
     response = requests.post(url, headers=headers, auth=(JIRA_USER, JIRA_TOKEN), json=payload)
