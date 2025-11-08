@@ -4,6 +4,8 @@ import sys
 import requests
 # from bs4 import BeautifulSoup
 
+file_path = "./results/semgrep-results.json"
+
 JIRA_URL = os.getenv("JIRA_URL")
 JIRA_USER = os.getenv("JIRA_USER")
 JIRA_TOKEN = os.getenv("JIRA_TOKEN")
@@ -38,7 +40,7 @@ def parse_semgrep(file_path):
         description = f"File: {result['path']}\nLine: {result['start']['line']}\nMessage: {result['extra']['message']}"
         severity = result['extra'].get('severity', 'Medium')
         create_jira_issue(summary, description, severity)
-
+ 
 # def parse_zap(file_path):
 #     with open(file_path) as f:
 #         soup = BeautifulSoup(f, "html.parser")

@@ -16,8 +16,8 @@ jobs:
         uses: returntocorp/semgrep-action@v1
         with:
           config: .semgrep.yml
-          json: true
-          output: semgrep-results.json
+          args: "--json --output semgrep-results.json"
+
 
       - name: Upload Semgrep results
         uses: actions/upload-artifact@v4
