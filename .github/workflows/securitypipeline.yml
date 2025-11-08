@@ -1,0 +1,70 @@
+name: Security Pipeline
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  sast:
+    name: Static Analysis (Semgrep)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run Semgrep
+        uses: returntocorp/semgrep-action@v1
+        with:
+          config: "p/owasp-top-ten"
+          json: true
+          output: semgrep-results.json
+
+      - name: Upload Semgrep results
+        uses: actions/upload-artifact@v3
+        with:
+          name: semgrep-results
+          path: semgrep-results.json
+
+  # dast:
+  #   name: Dynamic Analysis (OWASP ZAP Baseline)
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v3
+
+  #     - name: Run OWASP ZAP Baseline Scan
+  #       run: |
+  #         docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable zap-baseline.py \
+  #           -t http://localhost:3000 \
+  #           -r zap-report.html
+
+  #     - name: Upload ZAP report
+  #       uses: actions/upload-artifact@v3
+  #       with:
+  #         name: zap-report
+  #         path: zap-report.html
+
+  jira:
+    name: Create Jira Tickets
+    runs-on: ubuntu-latest
+    needs: [sast, dast]
+    steps:
+      - name: Download Semgrep results
+        uses: actions/download-artifact@v3
+        with:
+          name: semgrep-results
+          path: ./results
+
+      # - name: Download ZAP report
+      #   uses: actions/download-artifact@v3
+      #   with:
+      #     name: zap-report
+      #     path: ./results
+
+      - name: Create Jira Issues
+        run: |
+          python scripts/create_jira_tickets.py ./results/semgrep-results.json 
+        env:
+          JIRA_URL: ${{ secrets.JIRA_URL }}
+          JIRA_USER: ${{ secrets.JIRA_USER }}
+          JIRA_TOKEN: ${{ secrets.JIRA_TOKEN }}
