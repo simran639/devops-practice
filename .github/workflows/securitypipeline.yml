@@ -15,7 +15,7 @@ jobs:
       - name: Run Semgrep
         uses: returntocorp/semgrep-action@v1
         with:
-          config: ".semgrep.yml"
+          config: .semgrep.yml
           json: true
           output: semgrep-results.json
 
@@ -63,7 +63,7 @@ jobs:
 
       - name: Checkout code
         uses: actions/checkout@v3
-        
+
       - name: List repo contents
         run: ls -R
 

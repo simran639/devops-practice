@@ -29,6 +29,10 @@ def create_jira_issue(summary, description, severity="Medium"):
 def parse_semgrep(file_path):
     with open(file_path) as f:
         data = json.load(f)
+        if not data.get("results"):
+            print("No vulnerabilities found by Semgrep.")
+            sys.exit(0)  # gracefully exit instead of error
+
     for result in data.get("results", []):
         summary = f"[Semgrep] {result['check_id']}"
         description = f"File: {result['path']}\nLine: {result['start']['line']}\nMessage: {result['extra']['message']}"
