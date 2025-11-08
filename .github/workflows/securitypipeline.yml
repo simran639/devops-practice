@@ -61,6 +61,9 @@ jobs:
       #     name: zap-report
       #     path: ./results
 
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
       - name: List repo contents
         run: ls -R
 
