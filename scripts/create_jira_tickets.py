@@ -46,6 +46,6 @@ def parse_semgrep(file_path):
 
 if __name__ == "__main__":
     semgrep_file = sys.argv[1]
-    zap_file = sys.argv[2]
+    # zap_file = sys.argv[2]
     parse_semgrep(semgrep_file)
     # parse_zap(zap_file)
