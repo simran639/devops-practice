@@ -50,7 +50,7 @@ jobs:
     needs: [sast]
     steps:
       - name: Download Semgrep results
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: semgrep-results
           path: ./results
