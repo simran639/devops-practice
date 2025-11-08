@@ -7,7 +7,7 @@ JIRA_URL = os.getenv("JIRA_URL")
 JIRA_USER = os.getenv("JIRA_USER")
 JIRA_TOKEN = os.getenv("JIRA_TOKEN")
 
-def create_jira_issue(summary, description, severity="Medium"):
+def create_jira_issue(summary, description):
     url = f"{JIRA_URL}/rest/api/2/issue"
     headers = {"Content-Type": "application/json"}
     payload = {
@@ -16,7 +16,7 @@ def create_jira_issue(summary, description, severity="Medium"):
             "summary": summary,
             "description": description,
             "issuetype": {"name": "Bug"},
-            "priority": {"name": "severity"}
+            "priority": "Medium"
         }
     }
     response = requests.post(url, headers=headers, auth=(JIRA_USER, JIRA_TOKEN), json=payload)
