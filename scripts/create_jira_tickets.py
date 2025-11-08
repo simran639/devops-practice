@@ -34,6 +34,9 @@ def parse_semgrep(file_path):
         if not data.get("results"):
             print("No vulnerabilities found by Semgrep.")
             sys.exit(0)  # gracefully exit instead of error
+        if not os.path.exists(file_path):
+             print(f"Results file not found at {file_path}. Skipping Jira ticket creation.")
+             sys.exit(0)
 
     for result in data.get("results", []):
         summary = f"[Semgrep] {result['check_id']}"
