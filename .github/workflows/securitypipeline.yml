@@ -70,7 +70,7 @@ jobs:
 
       - name: Create Jira Issues
         run: |
-          python scripts/create_jira_tickets.py ./results/semgrep-results.json 
+          python scripts/create_jira_tickets.py ./results
         env:
           JIRA_URL: ${{ secrets.JIRA_URL }}
           JIRA_USER: ${{ secrets.JIRA_USER }}
