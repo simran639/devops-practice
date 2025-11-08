@@ -29,17 +29,14 @@ jobs:
     runs-on: ubuntu-latest
     needs: [sast]
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
       - name: Download Semgrep results
         uses: actions/download-artifact@v4
         with:
           name: semgrep-results
           path: ./results
-
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: List repo contents
-        run: ls -R
       
       - name: Debug results folder
         run: ls -R ./results
