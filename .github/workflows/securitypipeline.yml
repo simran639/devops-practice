@@ -62,8 +62,7 @@ jobs:
       #     path: ./results
 
       - name: List repo contents
-        run: ls -R ./results
-
+        run: ls -R
 
       - name: Create Jira Issues
         run: |
