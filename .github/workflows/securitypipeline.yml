@@ -40,6 +40,9 @@ jobs:
 
       - name: List repo contents
         run: ls -R
+      
+      - name: Debug results folder
+        run: ls -R ./results
 
       - name: Create Jira Issues
         run: python scripts/create_jira_tickets.py ./results/semgrep-results.json
