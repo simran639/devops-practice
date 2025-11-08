@@ -45,8 +45,8 @@ def parse_semgrep(file_path):
             f"Line: {result['start']['line']}\n"
             f"Message: {result['extra']['message']}"
         )
-        severity = result['extra'].get('severity', 'Medium')
-        create_jira_issue(summary, description, severity)
+        # severity = result['extra'].get('severity', 'Medium')
+        create_jira_issue(summary, description)
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
